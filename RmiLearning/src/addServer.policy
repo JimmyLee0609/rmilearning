@@ -1,0 +1,7 @@
+grant {
+	permission java.util.PropertyPermission "examples.activation.policy" , "read";
+	permission java.util.PropertyPermission "examples.activation.impl.codebase", "read";
+	permission java.util.PropertyPermission "examples.activation.policy","read";
+	permission java.net.SocketPermission "*:1024-", "accept,listen,resolve,connect";
+	
+};

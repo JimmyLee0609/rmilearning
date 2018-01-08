@@ -1,0 +1,16 @@
+grant {
+
+    // allow activation groups to use certain system properties
+    //	就是java后面的可用参数，这里写出来的就限定了。group启动的不会超出这个的限制																			
+    permission com.sun.rmi.rmid.ExecOptionPermission	"-Djava.security.policy=${examples.activation.policy}";
+	//限定group的策略文件，通过西东属性的方式来限定策略文件的具体路径，就是java -Dexamples.activation.policy=“file:\\路径或者http:\\路径”
+   
+    permission com.sun.rmi.rmid.ExecOptionPermission	"-Djava.class.path=no_classpath";
+    //限定group的cp就是限制它加载的范围，避免安全隐患
+   
+    permission com.sun.rmi.rmid.ExecOptionPermission	"-Dexamples.activation.impl.codebase=file:/D:/neonWoekspace/Junit/RmiLearning/bin/test/";
+    //限定一个系统属性的范围
+   
+    permission com.sun.rmi.rmid.ExecOptionPermission	"-Dexamples.activation.file=*";
+    
+};
