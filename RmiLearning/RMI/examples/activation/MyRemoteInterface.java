@@ -41,5 +41,5 @@ import java.rmi.*;
 
 public interface MyRemoteInterface extends Remote {
 
-    Object remoteMethod(Object obj) throws RemoteException;
+    String remoteMethod(String obj) throws RemoteException;
 }

@@ -40,30 +40,53 @@ package examples.activation;
 
 import java.rmi.*;
 import java.rmi.activation.*;
+import java.rmi.server.RMIClientSocketFactory;
+import java.rmi.server.RMIServerSocketFactory;
 
-public class ExtendsActivatable
-        extends Activatable
-        implements MyRemoteInterface
-{
-    /**
-     * Constructs an <code>ExtendsActivatable</code> instance with
-     * the specified activation ID and data.  This constructor is
-     * called during activation to construct the object.
-     **/
-    public ExtendsActivatable(ActivationID id, MarshalledObject data)
-        throws RemoteException
-    {
-        /*
-         * Export the activatable object on an anonymous port.
-         */
-        super(id, 0);
-    }
+public class ExtendsActivatable extends Activatable implements MyRemoteInterface {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7579975533645823339L;
 
-    /**
-     * Returns the specified object.
-     **/
-    public Object remoteMethod(Object obj) {
-        return obj;
-    }
+	/**
+	 * Constructs an <code>ExtendsActivatable</code> instance with the specified
+	 * activation ID and data. This constructor is called during activation to
+	 * construct the object.
+	 **/
+
+	public ExtendsActivatable(ActivationID id, int port, RMIClientSocketFactory csf, RMIServerSocketFactory ssf)
+			throws RemoteException {
+		super(id, port, csf, ssf);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ExtendsActivatable(ActivationID id, int port) throws RemoteException {
+		super(id, port);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ExtendsActivatable(String location, MarshalledObject<?> data, boolean restart, int port,
+			RMIClientSocketFactory csf, RMIServerSocketFactory ssf) throws ActivationException, RemoteException {
+		super(location, data, restart, port, csf, ssf);
+		// TODO Auto-generated constructor stub
+	}
+
+	public ExtendsActivatable(String location, MarshalledObject<?> data, boolean restart, int port)
+			throws ActivationException, RemoteException {
+		super(location, data, restart, port);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * Returns the specified object.
+	 **/
+
+	int num = 1;
+
+	@Override
+	public String remoteMethod(String obj) throws RemoteException {
+		num++;
+		return obj + num;
+	}
 }
-

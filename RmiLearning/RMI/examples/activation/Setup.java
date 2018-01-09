@@ -109,6 +109,17 @@ public class Setup {
 	}
 
 	public static void main(String[] args) throws Exception {
+		/*java -cp D:/neonWoekspace/Junit/RmiLearning/bin/           设置类路径
+					-Djava.rmi.server.codebase=file:/D:/neonWoekspace/Junit/RmiLearning/bin/   设定codebase
+					-Djava.rmi.server.useCodebaseOnly=true															设定只在codebase中加载类
+					-Dexamples.activation.setup.codebase=file:/D:/neonWoekspace/Junit/RmiLearning/bin/   设置系统属性
+					-Dexamples.activation.impl.codebase=file:/D:/neonWoekspace/Junit/RmiLearning/bin/test/   设置系统属性
+					-Dexamples.activation.name=Setup                                                                                       设置系统属性
+					-Djava.security.manager                                   启动安全管理器
+					-Djava.security.policy=file:/D:/neonWoekspace/Junit/RmiLearning/RMI/setup.policy    指定策略文件的位置  
+					examples.activation.Setup examples.activation.ExtendsActivatable
+					启动程序的全类名                      main的args的参数
+					*/
 		// 设置安全管理器
 		if (System.getSecurityManager() == null) {
 			System.setSecurityManager(new SecurityManager());
@@ -142,10 +153,11 @@ public class Setup {
 		 * "examples.activation.impl.codebase" system property. This property is
 		 * used in the group's policy file.
 		 **/
+//		获取系统属性，这里是有java -D属性=值   加载进去的
 		String policy = System.getProperty("examples.activation.policy", "group.policy");
 		String implCodebase = System.getProperty("examples.activation.impl.codebase");
 		String filename = System.getProperty("examples.activation.file", "");
-
+//		新建一个属性集
 		Properties props = new Properties();
 		props.put("java.security.policy", policy);
 		props.put("java.class.path", "no_classpath");
@@ -188,9 +200,13 @@ public class Setup {
 		if (filename != null && !filename.equals("")) {
 			data = new MarshalledObject(filename);
 		}
+		ExtendsActivatable extendsActivatable = new ExtendsActivatable("C:\\Users\\cobbl\\git\\rmilearning\\RmiLearning\\bin",null,false,1098);
+		extendsActivatable.num=8;
+		MarshalledObject marshalledObject = new MarshalledObject(extendsActivatable);
+		
 		
 //		创建延迟加载对象                                     注册到那个组   加载对象的全类名   加载对象的路径
-		ActivationDesc desc = new ActivationDesc(groupID, implClass, implCodebase, data);
+		ActivationDesc desc = new ActivationDesc(groupID, implClass, implCodebase, marshalledObject);
 //																														加载对象的初始化信息
 		
 		/*
