@@ -200,13 +200,13 @@ public class Setup {
 		if (filename != null && !filename.equals("")) {
 			data = new MarshalledObject(filename);
 		}
-		ExtendsActivatable extendsActivatable = new ExtendsActivatable("C:\\Users\\cobbl\\git\\rmilearning\\RmiLearning\\bin",null,false,1098);
-		extendsActivatable.num=8;
-		MarshalledObject marshalledObject = new MarshalledObject(extendsActivatable);
+		//ExtendsActivatable extendsActivatable = new ExtendsActivatable("C:\\Users\\cobbl\\git\\rmilearning\\RmiLearning\\bin",null,false,1099);
+		//extendsActivatable.num=8;
+//		MarshalledObject marshalledObject = new MarshalledObject(extendsActivatable);
 		
 		
 //		创建延迟加载对象                                     注册到那个组   加载对象的全类名   加载对象的路径
-		ActivationDesc desc = new ActivationDesc(groupID, implClass, implCodebase, marshalledObject);
+		ActivationDesc desc = new ActivationDesc(groupID, implClass, implCodebase, data);
 //																														加载对象的初始化信息
 		
 		/*
