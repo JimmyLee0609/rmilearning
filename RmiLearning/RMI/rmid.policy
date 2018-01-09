@@ -8,7 +8,7 @@ grant {
     permission com.sun.rmi.rmid.ExecOptionPermission	"-Djava.class.path=no_classpath";
     //限定group的cp就是限制它加载的范围，避免安全隐患
    
-    permission com.sun.rmi.rmid.ExecOptionPermission	"-Dexamples.activation.impl.codebase=${examples.activation.impl.codebase}";
+    permission com.sun.rmi.rmid.ExecOptionPermission	"-Dexamples.activation.impl.codebase=*";
     //限定一个系统属性的范围
    
     permission com.sun.rmi.rmid.ExecOptionPermission	"-Dexamples.activation.file=*";
